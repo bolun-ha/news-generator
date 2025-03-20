@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 // API地址配置
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = 'https://news-generator-p5ok.onrender.com';
 
 export default function Home() {
   const [prompt, setPrompt] = useState('');
