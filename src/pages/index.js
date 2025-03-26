@@ -83,7 +83,7 @@ const response = await fetch(`${apiUrl}/api/generate-news`, {
                 <div className={styles.newsDetails}>
                   <p className={styles.newsSummary}>{item.summary}</p>
                   <div className={styles.newsSource}>
-                    <span>来源/span>
+                  <span>来源：</span>
                     <a 
                       href={item.url} 
                       target="_blank" 
