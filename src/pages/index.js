@@ -12,9 +12,10 @@ export default function Home() {
     try {
       setLoading(true);
       setError('');
-      console.log('发送请求到后端，主题:', prompt);
+      console.log('发送请求到后端，主题, prompt);
       
-      const response = await fetch('http://localhost:3005/api/generate-news', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3005';
+const response = await fetch(`${apiUrl}/api/generate-news`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export default function Home() {
       const data = await response.json();
       console.log('收到后端响应:', data);
       setNews(data);
-      setExpandedIndex(null);  // 重置展开状态
+      setExpandedIndex(null);  // 重置展开状�?
     } catch (err) {
       console.error('生成新闻出错:', err);
       setError(err.message || '生成新闻失败，请稍后重试');
@@ -57,7 +58,7 @@ export default function Home() {
             disabled={loading || !prompt}
             className={styles.button}
           >
-            {loading ? '搜索中...' : '搜索'}
+            {loading ? '搜索中..' : '搜索'}
           </button>
         </div>
         
@@ -82,7 +83,7 @@ export default function Home() {
                 <div className={styles.newsDetails}>
                   <p className={styles.newsSummary}>{item.summary}</p>
                   <div className={styles.newsSource}>
-                    <span>来源：</span>
+                    <span>来源/span>
                     <a 
                       href={item.url} 
                       target="_blank" 
