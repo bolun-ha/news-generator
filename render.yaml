@@ -3,9 +3,8 @@ services:
     name: news-generator
     env: node
     region: singapore
-    rootDirectory: server
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
     envVars:
       - key: ARK_API_KEY
         value: ac3f27b4-8b16-407c-8686-babd1eaf0adc
@@ -15,7 +14,6 @@ services:
   - type: web
     name: news-generator-web
     env: static
-    rootDirectory: project - project - 可运行新闻自动搜
     buildCommand: npm install && npm run build
     staticPublishPath: .next
     headers:
