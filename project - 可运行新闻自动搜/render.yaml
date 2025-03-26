@@ -1,20 +1,16 @@
- services:
-  # 鍚庣鏈嶅姟閰嶇疆
+services:
   - type: web
     name: news-generator
     env: node
     region: singapore
-    rootDirectory: project - 可运行新闻自动搜/server
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
     envVars:
       - key: ARK_API_KEY
         value: ac3f27b4-8b16-407c-8686-babd1eaf0adc
-
         sync: false
     autoDeploy: true
 
-  # 鍓嶇鏈嶅姟閰嶇疆
   - type: web
     name: news-generator-web
     env: static
@@ -32,4 +28,3 @@
       - key: NEXT_PUBLIC_API_URL
         value: https://news-generator.onrender.com
     autoDeploy: true
-
