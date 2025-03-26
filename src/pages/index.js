@@ -12,7 +12,7 @@ export default function Home() {
     try {
       setLoading(true);
       setError('');
-      console.log('发送请求到后端，主题, prompt);
+      console.log('发送请求到后端，主题:', prompt);
       
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3005';
 const response = await fetch(`${apiUrl}/api/generate-news`, {
