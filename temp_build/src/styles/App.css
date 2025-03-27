@@ -1,0 +1,25 @@
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.news-box {
+  aspect-ratio: 1/1;
+  border: 2px solid #ccc;
+  padding: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.news-box.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  z-index: 100;
+}

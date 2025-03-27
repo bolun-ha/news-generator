@@ -1,4 +1,4 @@
-services:
+ services:
   - type: web
     name: news-generator
     env: node
@@ -13,18 +13,14 @@ services:
 
   - type: web
     name: news-generator-web
-    env: static
+    env: node
     buildCommand: npm install && npm run build
-    staticPublishPath: .next
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: DENY
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    startCommand: npm start
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://news-generator.onrender.com
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
     autoDeploy: true
