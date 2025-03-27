@@ -14,7 +14,7 @@ services:
   - type: web
     name: news-generator-web
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npx next build
     publishDir: out
     envVars:
       - key: NEXT_PUBLIC_API_URL
