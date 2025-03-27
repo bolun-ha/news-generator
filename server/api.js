@@ -8,7 +8,7 @@ const port = process.env.PORT || 3005;
 
 // CORS配置
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],  // 允许两个端口
+  origin: '*',  // 允许所有来源
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
