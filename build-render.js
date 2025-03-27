@@ -5,25 +5,7 @@ const path = require('path');
 try {
   console.log('开始构建...');
   
-  // 尝试使用 process.env.PATH 来执行 next
-  try {
-    console.log('PATH 环境变量:', process.env.PATH);
-    execSync('echo "PATH环境变量:" && echo $PATH', { stdio: 'inherit' });
-  } catch (err) {
-    console.error('无法显示 PATH:', err);
-  }
   
-  // 尝试列出 node_modules/.bin 目录内容
-  try {
-    console.log('列出 node_modules/.bin 目录:');
-    if (fs.existsSync('./node_modules/.bin')) {
-      execSync('ls -la ./node_modules/.bin', { stdio: 'inherit' });
-    } else {
-      console.log('node_modules/.bin 目录不存在');
-    }
-  } catch (err) {
-    console.error('无法列出目录:', err);
-  }
   
   // 创建基本的静态 HTML 文件作为后备方案
   console.log('创建静态 HTML 页面...');
@@ -155,14 +137,7 @@ try {
   console.log('静态 HTML 页面创建完成');
   
   // 尝试使用 npm 执行构建命令 (这可能会失败，但我们已经有了后备方案)
-  try {
-    console.log('尝试执行构建命令...');
-    execSync('npm run dev -- --output=export', { stdio: 'inherit' });
-  } catch (buildError) {
-    console.log('标准 Next.js 构建失败，但我们已经创建了静态 HTML 页面作为后备方案');
-    console.error('构建错误:', buildError);
-  }
-  
+ 
   console.log('构建过程完成');
 } catch (error) {
   console.error('构建脚本执行失败:', error);
