@@ -18,10 +18,12 @@ const nextConfig = {
         },
       ]
     },
-    // 环境变量配置
-    env: {
-      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3005'
-    }
-  }
+    env: { 
+      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3005" 
+    },
+    output: 'export',
+    // 设置输出目录为 'out'
+    distDir: 'out'
+  }; 
   
   module.exports = nextConfig

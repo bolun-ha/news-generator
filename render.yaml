@@ -24,3 +24,5 @@
       - key: NODE_ENV
         value: production
     autoDeploy: true
+       # 确保这里指定了正确的发布目录
+    publishDir: out
