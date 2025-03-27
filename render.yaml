@@ -1,10 +1,10 @@
- services:
+services:
   - type: web
     name: news-generator
     env: node
     region: singapore
     buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    startCommand: cd server && node api.js
     envVars:
       - key: ARK_API_KEY
         value: ac3f27b4-8b16-407c-8686-babd1eaf0adc
@@ -13,16 +13,10 @@
 
   - type: web
     name: news-generator-web
-    env: node
+    env: static
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    publishDir: out
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://news-generator.onrender.com
-      - key: PORT
-        value: 3000
-      - key: NODE_ENV
-        value: production
     autoDeploy: true
-       # 确保这里指定了正确的发布目录
-    publishDir: out
