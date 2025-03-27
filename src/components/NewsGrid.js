@@ -11,7 +11,8 @@ const NewsGrid = ({ prompt }) => {
       const now = new Date().getTime();
       
       if (!lastUpdated || (now - lastUpdated) > 86400000) { // 24小时更新
-        const response = await fetch('/api/generate-news', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3005';
+        const response = await fetch(`${apiUrl}/api/generate-news`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -38,3 +39,5 @@ const NewsGrid = ({ prompt }) => {
     </div>
   );
 };
+
+export default NewsGrid;
