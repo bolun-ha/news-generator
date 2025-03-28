@@ -8,7 +8,7 @@ const port = process.env.PORT || 3005;
 
 // CORS配置
 app.use(cors({
-  origin: '*',  // 允许所有来源
+  origin: ['http://localhost:3000', 'http://localhost:3001'],  // 允许两个端口
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -105,7 +105,6 @@ async function fetchToutiaoNews(keywords, timeRange) {
           'play.google.com'
         ];
 
-        
         // 只过滤广告关键词和域名
         const newsItems = response.data.data.filter(item => {
           const url = String(item.article_url || item.url || '');
@@ -119,23 +118,24 @@ async function fetchToutiaoNews(keywords, timeRange) {
           
           return !isBlockedDomain && !hasAdKeyword && url && title;
         });
-          // 获取网站域名的函数
-         const getDomainFromUrl = (url) => {
-         try {
-         const urlObj = new URL(url);
-        return urlObj.hostname.replace('www.', '');
-         } catch (e) {
-         return '未知来源';
-  }
-};
 
-        return newsItems.map(item => ({
-          title: item.title || item.display?.title || '',
-          content: item.abstract || item.content || item.display?.abstract || '',
-          date: item.publish_time ? new Date(item.publish_time * 1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-          url: item.article_url || item.url || '',
-          source: getDomainFromUrl(item.article_url || item.url || '')
-        }));
+       // 获取网站域名的函数
+       const getDomainFromUrl = (url) => {
+        try {
+          const urlObj = new URL(url);
+          return urlObj.hostname.replace('www.', '');
+        } catch (e) {
+          return '未知来源';
+        }
+      };
+
+      return newsItems.map(item => ({
+        title: item.title || item.display?.title || '',
+        content: item.abstract || item.content || item.display?.abstract || '',
+        date: item.publish_time ? new Date(item.publish_time * 1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+        url: item.article_url || item.url || '',
+        source: getDomainFromUrl(item.article_url || item.url || '')
+      }));
       }
       
       retryCount++;
@@ -248,6 +248,6 @@ app.post('/api/generate-news', async (req, res) => {
 });
 
 // 启动服务器
-app.listen(port, '0.0.0.0', () => {
-  console.log(`服务器运行在 http://0.0.0.0:${port}`);
+app.listen(port, () => {
+  console.log(`服务器运行在 http://localhost:${port}`);
 });
