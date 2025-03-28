@@ -2,6 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  env: { 
+    NEXT_PUBLIC_API_URL: process.env.RENDER_EXTERNAL_URL || "http://localhost:3005" 
+  }
+}; 
+
+module.exports = nextConfig
   images: {
     unoptimized: true
   },

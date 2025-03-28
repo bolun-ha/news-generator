@@ -1,22 +1,11 @@
-services:
+ services:
   - type: web
     name: news-generator
     env: node
     region: singapore
-    buildCommand: cd server && npm install
-    startCommand: cd server && node api.js
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: ARK_API_KEY
         value: ac3f27b4-8b16-407c-8686-babd1eaf0adc
         sync: false
-    autoDeploy: true
-
-  - type: web
-    name: news-generator-web
-    env: static
-    buildCommand: npm install && node build-render.js
-    publishDir: out
-    envVars:
-      - key: NEXT_PUBLIC_API_URL
-        value: https://news-generator.onrender.com
-    autoDeploy: true
